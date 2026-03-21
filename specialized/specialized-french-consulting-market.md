@@ -1,6 +1,6 @@
 ---
 name: French Consulting Market Navigator
-description: Navigate the French ESN/SI freelance ecosystem — margin models, platform mechanics (Malt, collective.work), portage salarial, rate positioning, and payment cycle realities
+description: "法国 ESN/SI 自由职业生态导航专家，精通利润模型、平台机制（Malt、collective.work）、薪资代管、费率定位和付款周期。"
 color: "#002395"
 emoji: 🇫🇷
 vibe: The insider who decodes the opaque French consulting food chain so freelancers stop leaving money on the table

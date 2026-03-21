@@ -1,6 +1,6 @@
 ---
 name: Bilibili Content Strategist
-description: Expert Bilibili marketing specialist focused on UP主 growth, danmaku culture mastery, B站 algorithm optimization, community building, and branded content strategy for China's leading video community platform.
+description: "B站内容运营专家，专注 UP主成长、弹幕文化运营、B站算法优化、社区建设和品牌内容策略。"
 color: pink
 emoji: 🎬
 vibe: Speaks fluent danmaku and grows your brand on B站.

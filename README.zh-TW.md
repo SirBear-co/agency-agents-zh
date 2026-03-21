@@ -14,13 +14,13 @@ Chinese community edition of [agency-agents](https://github.com/msitarzewski/age
 
 | 🤖 AI 智能體 | 🌏 英文版翻譯 | 🇨🇳 中國市場原創 | 🧠 支援工具 |
 |:---:|:---:|:---:|:---:|
-| **180** | **135** | **45** | **11 種** |
+| **186** | **142** | **44** | **12 種** |
 
 ---
 
 ## 這是什麼？
 
-**180 個即插即用的 AI 專家人格**——每個都有獨特的專業技能、溝通風格和可落地的工作流，不是通用模板。
+**186 個即插即用的 AI 專家人格**——每個都有獨特的專業技能、溝通風格和可落地的工作流，不是通用模板。
 
 ---
 
@@ -28,7 +28,7 @@ Chinese community edition of [agency-agents](https://github.com/msitarzewski/age
 
 ### 方式一：一鍵安裝到你的 AI 工具
 
-支援 **11 種主流 AI 程式設計工具**，一條命令搞定：
+支援 **12 種主流 AI 程式設計工具**，一條命令搞定：
 
 ```bash
 # 自動檢測已安裝的工具，一鍵安裝
@@ -46,9 +46,10 @@ Chinese community edition of [agency-agents](https://github.com/msitarzewski/age
 ./scripts/install.sh --tool antigravity    # Antigravity
 ./scripts/install.sh --tool gemini-cli     # Gemini CLI
 ./scripts/install.sh --tool qwen           # Qwen Code
+./scripts/install.sh --tool codex          # Codex CLI
 ```
 
-> 轉換後的檔案已包含在倉庫中，直接執行 `install.sh` 即可。`convert.sh` 僅在需要重新生成時使用。
+> Claude Code 和 GitHub Copilot 可直接安裝；其他工具需先執行 `./scripts/convert.sh` 轉換格式。
 
 ### 🔥 OpenClaw 使用者快速上手
 
@@ -437,7 +438,7 @@ cp -r marketing/*.md ~/.claude/agents/
 
 ## 工具整合
 
-支援 **11 種主流 AI 程式設計工具**，透過 `scripts/` 目錄下的指令碼實現格式轉換和一鍵安裝。
+支援 **12 種主流 AI 程式設計工具**，透過 `scripts/` 目錄下的指令碼實現格式轉換和一鍵安裝。
 
 ### 支援的工具
 
@@ -454,16 +455,18 @@ cp -r marketing/*.md ~/.claude/agents/
 | **OpenCode** | `.opencode/agents/` | 專案級，需轉換 |
 | **Aider** | `CONVENTIONS.md` | 專案級，需轉換 |
 | **Windsurf** | `.windsurfrules` | 專案級，需轉換 |
+| **Codex CLI** | `.codex/agents/` | 專案級，需轉換 |
 
 ### 使用方法
 
 ```bash
-# 安裝到本地（轉換檔案已包含在倉庫中，無需額外步驟）
+# 第一步：轉換格式（Claude Code 和 GitHub Copilot 可跳過此步）
+./scripts/convert.sh                    # 轉換為所有工具格式
+./scripts/convert.sh --tool cursor      # 只轉換 Cursor 格式
+
+# 第二步：安裝到本地
 ./scripts/install.sh                    # 自動檢測並安裝
 ./scripts/install.sh --tool cursor      # 安裝到指定工具
-
-# 如需重新生成轉換檔案（通常不需要）
-./scripts/convert.sh                    # 重新轉換所有工具格式
 
 # 檢查智能體檔案格式
 ./scripts/lint-agents.sh
@@ -524,6 +527,7 @@ openclaw gateway restart
 轉換為 Antigravity skill 格式並安裝到 `~/.gemini/antigravity/skills/`。
 
 ```bash
+./scripts/convert.sh --tool antigravity
 ./scripts/install.sh --tool antigravity
 ```
 </details>
@@ -534,6 +538,7 @@ openclaw gateway restart
 轉換為 Gemini CLI 擴充套件格式並安裝到 `~/.gemini/extensions/agency-agents/`。
 
 ```bash
+./scripts/convert.sh --tool gemini-cli
 ./scripts/install.sh --tool gemini-cli
 ```
 </details>
@@ -544,6 +549,7 @@ openclaw gateway restart
 轉換為 Qwen Code SubAgent 格式並安裝到專案目錄 `.qwen/agents/`。
 
 ```bash
+./scripts/convert.sh --tool qwen
 cd /your/project
 /path/to/agency-agents-zh/scripts/install.sh --tool qwen
 ```
@@ -565,23 +571,28 @@ Cursor 使用 **「智慧匹配」模式**（`alwaysApply: false`）：AI 根據
 
 **安裝：**
 ```bash
+# 第一步：轉換格式（在倉庫目錄執行）
+./scripts/convert.sh --tool cursor
+
+# 第二步：安裝到專案（在你的專案目錄執行）
 cd /your/project
 /path/to/agency-agents-zh/scripts/install.sh --tool cursor
 ```
 
 **⚠️ 重要：建議精選安裝**
 
-全部安裝 180 個規則會導致 Cursor 需要掃描大量 description 來判斷相關性，**可能影響匹配準確度**。推薦做法：
+全部安裝 186 個規則會導致 Cursor 需要掃描大量 description 來判斷相關性，**可能影響匹配準確度**。推薦做法：
 
 ```bash
-# 方法一：先全量安裝，再刪除不需要的
+# 方法一：全量安裝後刪除不需要的
 /path/to/agency-agents-zh/scripts/install.sh --tool cursor
-# 然後手動刪除 .cursor/rules/ 中不需要的 .mdc 檔案
+# 然後手動刪除 .cursor/rules/ 中不需要的 .mdc 檔案，保留 10-20 個常用的
 
-# 方法二：只複製你需要的智能體
-mkdir -p .cursor/rules
-cp /path/to/agency-agents-zh/integrations/cursor/rules/engineering-frontend-developer.mdc .cursor/rules/
-cp /path/to/agency-agents-zh/integrations/cursor/rules/engineering-code-reviewer.mdc .cursor/rules/
+# 方法二：只複製你需要的智能體（轉換後）
+./scripts/convert.sh --tool cursor
+mkdir -p /your/project/.cursor/rules
+cp integrations/cursor/rules/engineering-frontend-developer.mdc /your/project/.cursor/rules/
+cp integrations/cursor/rules/engineering-code-reviewer.mdc /your/project/.cursor/rules/
 # ... 按需複製
 ```
 
@@ -605,6 +616,7 @@ cp /path/to/agency-agents-zh/integrations/cursor/rules/engineering-code-reviewer
 轉換為 Trae rule 檔案並安裝到專案目錄 `.trae/rules/`。格式與 Cursor 類似。
 
 ```bash
+./scripts/convert.sh --tool trae
 cd /your/project
 /path/to/agency-agents-zh/scripts/install.sh --tool trae
 ```
@@ -616,6 +628,7 @@ cd /your/project
 轉換為 OpenCode agent 檔案並安裝到專案目錄 `.opencode/agents/`。
 
 ```bash
+./scripts/convert.sh --tool opencode
 cd /your/project
 /path/to/agency-agents-zh/scripts/install.sh --tool opencode
 ```
@@ -627,6 +640,7 @@ cd /your/project
 所有智能體編譯為單個 `CONVENTIONS.md` 檔案，Aider 會自動讀取。
 
 ```bash
+./scripts/convert.sh --tool aider
 cd /your/project
 /path/to/agency-agents-zh/scripts/install.sh --tool aider
 ```
@@ -643,9 +657,24 @@ cd /your/project
 所有智能體編譯為單個 `.windsurfrules` 檔案。
 
 ```bash
+./scripts/convert.sh --tool windsurf
 cd /your/project
 /path/to/agency-agents-zh/scripts/install.sh --tool windsurf
 ```
+</details>
+
+<details>
+<summary><strong>Codex CLI</strong></summary>
+
+轉換為 OpenAI Codex CLI agent 檔案（TOML 格式）並安裝到專案目錄 `.codex/agents/`。
+
+```bash
+./scripts/convert.sh --tool codex
+cd /your/project
+/path/to/agency-agents-zh/scripts/install.sh --tool codex
+```
+
+在 Codex 中使用時，智能體會作為 subagent 被呼叫。也可以在 `AGENTS.md` 中引用。
 </details>
 
 ### 修改智能體後重新生成
