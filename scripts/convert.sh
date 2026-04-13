@@ -199,7 +199,7 @@ convert_cursor() {
   cat > "$outfile" <<HEREDOC
 ---
 description: ${description}
-globs: ""
+globs:
 alwaysApply: false
 ---
 ${body}
@@ -221,7 +221,7 @@ convert_trae() {
   cat > "$outfile" <<HEREDOC
 ---
 description: ${description}
-globs: ""
+globs:
 alwaysApply: false
 ---
 ${body}
