@@ -2,3 +2,6 @@
 integrations/
 .claude/
 openspec/.DS_Store
+
+# agency-orchestrator local config
+.env
