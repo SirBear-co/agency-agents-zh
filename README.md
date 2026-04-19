@@ -10,6 +10,34 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://makeapullrequest.com)
 
+## 我自己的使用说明
+
+这个仓库目前也被我当作自己的 `idea lab` 使用。
+
+- 根仓库继续保留 `agency-agents-zh` 的 agent 能力和上游同步能力
+- 我自己的灵感、讨论和沉淀文档放在 [idea-lab/](/Users/shuyujie/Git/agency-agents-zh/idea-lab)
+- 有新 idea 时，我会在 `idea-lab/` 里找合适的 agent 讨论，再把结果整理成文档
+
+## 同步原作者更新
+
+我当前的 Git 远程约定是：
+
+- `origin`：我自己的 GitHub 仓库
+- `upstream`：原作者仓库 `jnMetaCode/agency-agents-zh`
+
+当我想同步原作者更新时，使用：
+
+```bash
+git fetch upstream
+git merge upstream/main
+```
+
+如果同步后需要再推回我自己的 GitHub：
+
+```bash
+git push origin main
+```
+
 
 ### 📊 项目规模
 
